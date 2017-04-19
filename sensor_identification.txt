@@ -1,0 +1,3 @@
+host: battery lettering up, orange + white sd card
+device1: battery lettering down, orange + white sd card
+device2: battery away, black blank sd

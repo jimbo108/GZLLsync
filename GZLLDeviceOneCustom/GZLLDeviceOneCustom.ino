@@ -32,7 +32,6 @@ void timestampPrint()
   timestampFile.close();
 }
 
-void startRountrip()
 {
   timestampBegin = micros();
   // Data is irrelevant
@@ -47,7 +46,7 @@ void setup()
   Wire.beginOnPins(SCLpin, SDApin);
   SD.begin(SDpin);
   sanityPrint();
-  startRountrip(); 
+  startRoundtrip(); 
 }
 
 void loop() 

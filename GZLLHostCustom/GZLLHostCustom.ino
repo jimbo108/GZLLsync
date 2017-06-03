@@ -9,12 +9,15 @@ device_t role = HOST;
 File sanityFile;
 File timestampFile;
 
+int printIter = 0;
+
 int SCLpin = 0;
 int SDApin = 1;
 int SDpin = 6;
 
 int timestampOne;
 int timestampTwo;
+int timestampThree;
 
 bool hasStartSignal = false;
 
@@ -28,9 +31,12 @@ void sanityPrint()
 void timestampPrint(int timestamp)
 {
   timestampFile = SD.open("tshost.txt", FILE_WRITE);
-  timestampFile.print("TIMESTAMP: ");
+  timestampFile.print(printIter);
+  timestampFile.print(" TIMESTAMP: ");
   timestampFile.print(timestamp);
+  timestampFile.print("\n");
   timestampFile.close();
+  printIter++;
 }
 
 void setup() 
@@ -58,6 +64,10 @@ void RFduinoGZLL_onReceive(device_t device, int rssi, char *data, int len)
     timestampTwo = micros();
     RFduinoGZLL.sendToDevice(device, "OK");
     timestampPrint(timestampTwo);
+  } else if (hasStartSignal && device == DEVICE2) {
+    timestampThree = micros();
+    RFduinoGZLL.sendToDevice(device, "OK");
+    timestampPrint(timestampThree);
   }
 
   

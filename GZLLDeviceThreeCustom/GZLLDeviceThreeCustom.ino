@@ -2,7 +2,7 @@
 #include <SD.h>
 #include <Wire.h>
 
-device_t role = DEVICE1;
+device_t role = DEVICE2;
 
 File sanityFile;
 File timestampFile;
@@ -49,7 +49,7 @@ void setup()
   Wire.beginOnPins(SCLpin, SDApin);
   SD.begin(SDpin);
   sanityPrint();
-  delay(5000);
+  delay(10000);
   startRoundtrip();
 }
 
